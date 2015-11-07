@@ -44,77 +44,60 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-
-	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+	/* WEBPACK VAR INJECTION */(function(process, global) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
 	exports.default = create;
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
 	/**
 	 * Created by albertoclarit on 11/7/15.
 	 */
-	function create() {
-	    var BabelImportRoot = (function () {
-	        function BabelImportRoot() {
-	            _classCallCheck(this, BabelImportRoot);
 
-	            this.cwd = process.cwd();
+	global.rootPath = process.cwd();
 
-	            return {
-	                visitor: {
-	                    ImportDeclaration1: function ImportDeclaration1(node) {
-	                        var givenPath = node.node.source.value;
-
-	                        if (hasTildeInString(givenPath)) {
-	                            node.node.source.value = transformRelativeToRootPath(node.node.source.value);
-	                        }
-
-	                        console.log(node.node.source.value);
-	                    }
-	                }
-	            };
-	        }
-
-	        _createClass(BabelImportRoot, [{
-	            key: 'transformRelativeToRootPath',
-	            value: function transformRelativeToRootPath(path) {
-	                if (hasTildeInString(path)) {
-	                    var withoutTilde = path.substring(2, path.length);
-	                    return this.cwd + '/' + withoutTilde;
-	                }
-	                if (typeof path === 'string') {
-	                    return path;
-	                }
-	                throw new Error('ERROR: No path passed');
-	            }
-	        }, {
-	            key: 'hasTildeInString',
-	            value: function hasTildeInString(path) {
-
-	                var containsTilde = false;
-
-	                if (typeof path === 'string') {
-	                    var firstTwoCharactersOfString = path.substring(0, 2);
-	                    if (firstTwoCharactersOfString === '~/') {
-	                        containsTilde = true;
-	                    }
-	                }
-
-	                return containsTilde;
-	            }
-	        }]);
-
-	        return BabelImportRoot;
-	    })();
-
-	    return new BabelImportRoot();
+	function transformRelativeToRootPath(path) {
+	    if (hasTildeInString(path)) {
+	        var withoutTilde = path.substring(2, path.length);
+	        return global.rootPath + '/' + withoutTilde;
+	    }
+	    if (typeof path === 'string') {
+	        return path;
+	    }
+	    throw new Error('ERROR: No path passed');
 	}
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
+
+	function hasTildeInString(path) {
+
+	    var containsTilde = false;
+
+	    if (typeof path === 'string') {
+	        var firstTwoCharactersOfString = path.substring(0, 2);
+	        if (firstTwoCharactersOfString === '~/') {
+	            containsTilde = true;
+	        }
+	    }
+
+	    return containsTilde;
+	}
+
+	function create() {
+
+	    return {
+	        visitor: {
+	            ImportDeclaration: function ImportDeclaration(node) {
+	                var givenPath = node.node.source.value;
+
+	                if (hasTildeInString(givenPath)) {
+	                    node.node.source.value = transformRelativeToRootPath(node.node.source.value);
+	                }
+
+	                console.log(node.node.source.value);
+	            }
+	        }
+	    };
+	}
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), (function() { return this; }())))
 
 /***/ },
 /* 1 */
