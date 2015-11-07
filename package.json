@@ -1,0 +1,31 @@
+{
+  "name": "babel-import-root",
+  "version": "0.0.1",
+  "description": "Babel Root import from CWD. For Babel 6+",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "node ./node_modules/webpack/bin/webpack.js ./plugin/babel-import-root.js  ./lib/babel-import-root.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/albertoclarit/babel-import-root.git"
+  },
+  "keywords": [
+    "babel",
+    "root"
+  ],
+  "author": "Albert Oclarit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/albertoclarit/babel-import-root/issues"
+  },
+  "homepage": "https://github.com/albertoclarit/babel-import-root#readme",
+  "devDependencies": {
+    "babel-core": "^6.1.2",
+    "babel-loader": "^6.0.1",
+    "babel-preset-es2015": "^6.1.2",
+    "babel-preset-react": "^6.1.2",
+    "webpack": "^1.12.3"
+  }
+}
