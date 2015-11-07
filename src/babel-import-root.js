@@ -16,6 +16,7 @@ export default function create() {
                             node.node.source.value = transformRelativeToRootPath(node.node.source.value);
                         }
 
+                        console.log(node.node.source.value);
                     }
                 }
             }
