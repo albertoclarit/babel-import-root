@@ -9,7 +9,7 @@ export default function create() {
 
             return {
                 visitor: {
-                    ImportDeclaration: (node)=> {
+                    ImportDeclaration1: (node)=> {
                         const givenPath = node.node.source.value;
 
                         if (hasTildeInString(givenPath)) {

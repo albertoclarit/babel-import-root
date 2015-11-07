@@ -67,7 +67,7 @@
 
 	            return {
 	                visitor: {
-	                    ImportDeclaration: function ImportDeclaration(node) {
+	                    ImportDeclaration1: function ImportDeclaration1(node) {
 	                        var givenPath = node.node.source.value;
 
 	                        if (hasTildeInString(givenPath)) {
