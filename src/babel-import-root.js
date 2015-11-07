@@ -4,7 +4,6 @@
 
 global.rootPath = process.cwd();
 
-
 function transformRelativeToRootPath(path) {
     if (hasTildeInString(path)) {
         const withoutTilde = path.substring(2, path.length);
@@ -31,20 +30,26 @@ function  hasTildeInString (path)  {
 
 }
 
-
-export default function create() {
+module.exports = function ( types) {
 
     return {
         visitor: {
-            ImportDeclaration: (node)=> {
+            ImportDeclaration: function(node) {
+
+                //console.log(node.path);
+
+                //var keys = Object.keys(node.node.source);
+
+                //console.log(node.node.source.value);
                 const givenPath = node.node.source.value;
 
+                // node.node.source.value = 'xxx';
                 if (hasTildeInString(givenPath)) {
                     node.node.source.value = transformRelativeToRootPath(node.node.source.value);
                 }
 
-                console.log(node.node.source.value);
             }
         }
     };
-}
+
+};
