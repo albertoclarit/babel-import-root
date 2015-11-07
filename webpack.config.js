@@ -5,13 +5,13 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-    plugins: [
+    /*plugins: [
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.UglifyJsPlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.AggressiveMergingPlugin(),
         new webpack.NoErrorsPlugin()
-    ],
+    ],*/
     module: {
         loaders: [
             {
