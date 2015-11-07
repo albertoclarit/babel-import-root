@@ -1,7 +1,7 @@
 /**
  * Created by albertoclarit on 11/7/15.
  */
-export default function create({types:t}) {
+export default function create() {
     class BabelImportRoot {
 
         constructor(){
