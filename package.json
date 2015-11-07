@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "webpack ./plugin/babel-import-root.js  ./lib/babel-import-root.js"
+    "build": "webpack ./src/babel-import-root.js  ./index.js"
   },
   "repository": {
     "type": "git",
